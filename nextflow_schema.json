@@ -1,0 +1,202 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://raw.githubusercontent.com/jpadesousa/nf_bisulfite/main/nextflow_schema.json",
+    "title": "Bisulfite sequencing pipeline parameters",
+    "description": "Bisulfite sequencing analysis pipeline.",
+    "type": "object",
+
+    "definitions": {
+
+        "sequencing_type_options": {
+            "title": "Sequencing type",
+            "type": "object",
+            "fa_icon": "fas fa-users-cog",
+            "description": "Choose the bisulfite sequencing type.",
+            "properties": {
+
+                "seqtype": {
+                    "type": "string",
+                    "default": "WGBS",
+                    "description": "Name of the bisulfite sequencing type.",
+                    "fa_icon": "fas fa-book",
+                    "help_text": "The default values for each sequencing type.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nPBAT without default TrimGalore clip: \n\nfastq_screen_args='--bisulfite' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOME-seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
+                    "enum": ["WGBS", "PBAT", "PBAT without default TrimGalore clip", "RRBS", "NOME-seq", "scBS-seq", "scNMT-seq"]
+                }
+
+            }
+        },
+
+        "input_output_options": {
+            "title": "Input/output options",
+            "type":  "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": ["input", "outdir"],
+            "properties": {
+
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "mimetype": "text/plain",
+                    "description": "Path to the folder where the FASTQ files are located. You have to use an absolute path and list the files by using a wildcard or the name of a single file.\n\nFor example: /cluster/work/nme/data/josousa/project/fastq/*fastq.gz",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use an absolute path.",
+                    "fa_icon": "fas fa-folder-open"
+                }
+
+            }
+        },
+        
+        "reference_genome_options": {
+            "title": "Reference genome options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "required": ["genome"],
+            "description": "Reference genome used for alignment.",
+            "properties": {
+
+                "genome": {
+                    "type": "string",
+                    "default": "GRCh38",
+                    "description": "Name of the reference genome.",
+                    "fa_icon": "fas fa-book",
+                    "enum": ["GRCh38"]
+                }
+
+            }
+        },
+
+        "process_skipping_options": {
+            "title": "Skipping and adding processes",
+            "type": "object",
+            "fa_icon": "fas fa-fast-forward",
+            "description": "Skip and add various steps within the workflow.",
+            "properties": {
+
+                "skip_qc": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-fast-forward",
+                    "description": "Skip FastQC, TrimGalore, and FastQ Screen. The first step of the pipeline will be the Bismark alignment."
+                },
+
+                "skip_fastq_screen": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-fast-forward",
+                    "description": "Skip FastQ Screen.",
+                    "default": true
+                },
+
+                "skip_deduplication": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-fast-forward",
+                    "description": "Skip Bismark deduplication."
+                },
+
+                "add_filter_non_conversion": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-dolly",
+                    "description": "Add Bismark filter non-conversion before deduplication (if selected) and before Bismark methylation extractor."
+                }
+
+            }
+        },
+
+        "module_arguments_options": {
+            "title": "Module arguments",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Add extra arguments to the workflow modules.",
+            "properties": {
+
+                "fastqc_args": {
+                    "type": "string",
+                    "description": "FastQC arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "fastq_screen_args": {
+                    "type": "string",
+                    "description": "FastQ Screen arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "trim_galore_args": {
+                    "type": "string",
+                    "description": "TrimGalore arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "bismark_args": {
+                    "type": "string",
+                    "description": "Bismark arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "filter_non_conversion_args": {
+                    "type": "string",
+                    "description": "Bismark filter non-conversion arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "deduplicate_bismark_args": {
+                    "type": "string",
+                    "description": "Bismark deduplicate arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "bismark_methylation_extractor_args": {
+                    "type": "string",
+                    "description": "Bismark methylation extractor arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "coverage2cytosine_args": {
+                    "type": "string",
+                    "description": "Bismark coverage2cytosine arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "bismark2summary_args": {
+                    "type": "string",
+                    "description": "Bismark2summary arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "bismark2report_args": {
+                    "type": "string",
+                    "description": "Bismark2report arguments.",
+                    "fa_icon": "fas fa-file-code"
+                },
+
+                "multiqc_args": {
+                    "type": "string",
+                    "description": "MultiQC arguments.",
+                    "fa_icon": "fas fa-file-code"
+                }
+            }
+        }
+
+    },
+    "allOf": [
+        {
+            "$ref": "#/definitions/sequencing_type_options"
+        },
+        {
+            "$ref": "#/definitions/input_output_options"
+        },
+        {
+            "$ref": "#/definitions/reference_genome_options"
+        },
+        {
+            "$ref": "#/definitions/process_skipping_options"
+        },
+        {
+            "$ref": "#/definitions/module_arguments_options"
+        }
+    ]
+}    
