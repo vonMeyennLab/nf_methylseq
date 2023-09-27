@@ -8,7 +8,7 @@
     "definitions": {
 
         "sequencing_type_options": {
-            "title": "Sequencing type",
+            "title": "Sequencing type options",
             "type": "object",
             "fa_icon": "fas fa-users-cog",
             "description": "Choose the bisulfite sequencing type.",
@@ -72,7 +72,7 @@
         },
 
         "process_skipping_options": {
-            "title": "Skipping and adding processes",
+            "title": "Process skipping options",
             "type": "object",
             "fa_icon": "fas fa-fast-forward",
             "description": "Skip and add various steps within the workflow.",
@@ -107,7 +107,7 @@
         },
 
         "module_arguments_options": {
-            "title": "Module arguments",
+            "title": "Module arguments options",
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Add extra arguments to the workflow modules.",
