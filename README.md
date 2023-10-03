@@ -50,19 +50,19 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 - Option to use a custom genome for alignment by providing an absolute path to a custom genome file. </br>
 `--custom_genome_file`
 
-    > |                |                                                                              |
-    > |----------------|------------------------------------------------------------------------------|
-    > | name           | GRCm39                                                                       |
-    > | species        | Mouse                                                                        |
-    > | fasta          | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/WholeGenomeFasta/            |
-    > | bismark        | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BismarkIndex/                |
-    > | bowtie         | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BowtieIndex/genome           |
-    > | bowtie2        | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Bowtie2Index/genome          |
-    > | star           | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/STARIndex/genome             |
-    > | bwa            | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BWAIndex/genome              |
-    > | hisat2         | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/genome           |
-    > | hisat2_splices | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/splice_sites.txt |
-    > | gtf            | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Annotation/Genes/genes.gtf            |
+> |                |                                                                              |
+> |----------------|------------------------------------------------------------------------------|
+> | name           | GRCm39                                                                       |
+> | species        | Mouse                                                                        |
+> | fasta          | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/WholeGenomeFasta/            |
+> | bismark        | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BismarkIndex/                |
+> | bowtie         | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BowtieIndex/genome           |
+> | bowtie2        | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Bowtie2Index/genome          |
+> | star           | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/STARIndex/genome             |
+> | bwa            | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BWAIndex/genome              |
+> | hisat2         | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/genome           |
+> | hisat2_splices | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/splice_sites.txt |
+> | gtf            | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Annotation/Genes/genes.gtf            |
 
 
 
