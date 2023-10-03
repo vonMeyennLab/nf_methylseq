@@ -50,7 +50,7 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 - Option to use a custom genome for alignment by providing an absolute path to a custom genome file. </br>
 `--custom_genome_file`
 
-    > | Genome file   |                                                                  |
+    > |                |                                                                              |
     > |----------------|------------------------------------------------------------------------------|
     > | name           | GRCm39                                                                       |
     > | species        | Mouse                                                                        |
