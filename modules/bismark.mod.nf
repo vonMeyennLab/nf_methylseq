@@ -7,7 +7,6 @@ nextflow.enable.dsl=2
 ======================================================================================== */
 params.verbose       = true
 params.bam_output    = true // Setting if the bam file should be published
-
 params.pbat 	     = false
 params.unmapped      = false
 params.ambiguous     = false

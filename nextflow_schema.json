@@ -71,12 +71,36 @@
             }
         },
 
+        "bismark_options": {
+            "title": "Bismark options",
+            "type": "object",
+            "fa_icon": "fas fa-users-cog",
+            "description": "Choose the Bismark options.",
+            "properties": {
+
+                "unmapped": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-book",
+                    "description": "Write all reads that could not be aligned to a file in the output directory.",
+                    "default": false
+                },
+
+                "ambiguous": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-book",
+                    "description": "Write all reads which produce more than one valid alignment with the same number of lowest mismatches or other reads that fail to align uniquely to a file in the output directory.",
+                    "default": false
+                }
+
+            }
+        },
+
         "fastq_screen_options": {
             "title": "FastQ Screen options",
             "type": "object",
             "fa_icon": "fas fa-users-cog",
             "description": "Choose the FastQ Screen options.",
-            "properties": {
+            "properties": {        
 
                 "fastq_screen_conf": {
                     "type": "string",
@@ -208,6 +232,9 @@
         },
         {
             "$ref": "#/definitions/reference_genome_options"
+        },
+        {
+            "$ref": "#/definitions/bismark_options"
         },
         {
             "$ref": "#/definitions/fastq_screen_options"

@@ -14,9 +14,9 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 6. [Bismark filter non-conversion](https://felixkrueger.github.io/Bismark/bismark/filter_nonconverted_reads/) _[Optional]_
 7. [Bismark deduplication](https://felixkrueger.github.io/Bismark/bismark/deduplication/)
 8. [Bismark methylation extractor](https://felixkrueger.github.io/Bismark/bismark/methylation_extraction/)
-9. [Bismark2report](https://felixkrueger.github.io/Bismark/bismark/processing_report/)
-10. [Bismark2summary](https://felixkrueger.github.io/Bismark/bismark/summary_report/)
-11. [coverage2cytosine](https://felixkrueger.github.io/Bismark/bismark/methylation_extraction/) _[Optional]_
+9. [coverage2cytosine](https://felixkrueger.github.io/Bismark/bismark/methylation_extraction/) _[Optional]_
+10. [Bismark2report](https://felixkrueger.github.io/Bismark/bismark/processing_report/)
+11. [Bismark2summary](https://felixkrueger.github.io/Bismark/bismark/summary_report/)
 12. [MultiQC](https://multiqc.info/)
 
 ### Required parameters
@@ -88,14 +88,14 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 - Option to add extra arguments to the funcion [Bismark methylation extractor](https://felixkrueger.github.io/Bismark/bismark/methylation_extraction/).</br>
 `--bismark_methylation_extractor_args`</br>
 
+- Option to add extra arguments to the funcion [Bismark coverage2cytosine](https://felixkrueger.github.io/Bismark/bismark/methylation_extraction/).</br>
+`--coverage2cytosine_args`</br>
+
 - Option to add extra arguments to the funcion [Bismark2summary](https://felixkrueger.github.io/Bismark/bismark/summary_report/).</br>
 `--bismark2summary_args`</br>
 
 - Option to add extra arguments to the funcion [Bismark2report](https://felixkrueger.github.io/Bismark/bismark/processing_report/).</br>
 `--bismark2report_args`</br>
-
-- Option to add extra arguments to the funcion [Bismark coverage2cytosine](https://felixkrueger.github.io/Bismark/bismark/methylation_extraction/).</br>
-`--coverage2cytosine_args`</br>
 
 - Option to add extra arguments to the package [MultiQC](https://multiqc.info/).</br>
 `--multiqc_args`</br>

@@ -6,7 +6,6 @@ nextflow.enable.dsl=2
     DEFAULT PARAMETERS
 ======================================================================================== */
 params.verbose = true
-
 params.prefix  = "" 
 
 
