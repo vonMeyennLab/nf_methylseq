@@ -78,7 +78,7 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 - Option to set the maximum insert size for valid paired-end alignments.</br>
 `--maxins` _[Defaul: 500]_</br>
 
-- Option to set the alignment mode to local.</br>
+- Option to set the alignment mode to _local_.</br>
 `--local`</br>
     > In this mode, it is not required that the entire read aligns from one end to the other. Rather, some characters may be omitted (“soft-clipped”) from the ends in order to achieve the greatest possible alignment score.
 
