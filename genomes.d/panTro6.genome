@@ -4,4 +4,4 @@ fasta           ${GENOMES}/Pan_troglodytes/UCSC/panTro6/Sequence/WholeGenomeFast
 bismark         ${GENOMES}/Pan_troglodytes/UCSC/panTro6/Sequence/BismarkIndex/
 bowtie2	        ${GENOMES}/Pan_troglodytes/UCSC/panTro6/Sequence/Bowtie2Index/genome
 star            ${GENOMES}/Pan_troglodytes/UCSC/panTro6/Sequence/STARIndex/genome
-gtf	        ${GENOMES}/Pan_troglodytes/UCSC/panTro6/Annotation/Genes/genes.gtf
+gtf	            ${GENOMES}/Pan_troglodytes/UCSC/panTro6/Annotation/Genes/genes.gtf

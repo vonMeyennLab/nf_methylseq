@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/jpadesousa/nf_bisulfite/main/nextflow_schema.json",
+    "$id": "https://raw.githubusercontent.com/vonMeyennLab/nf_methylseq/main/nextflow_schema.json",
     "title": "Bisulfite sequencing pipeline parameters",
     "description": "Bisulfite sequencing analysis pipeline.",
     "type": "object",

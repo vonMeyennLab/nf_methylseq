@@ -5,10 +5,10 @@ nextflow.enable.dsl=2
 /* ========================================================================================
     DEFAULT PARAMETERS
 ======================================================================================== */
-params.verbose    = true
-
-params.bisulfite  = false
-params.single_end = false
+params.verbose           = true
+params.fastq_screen_conf = "/cluster/work/nme/software/config/fastq_screen.conf"
+params.bisulfite         = false
+params.single_end        = false
 
 
 /* ========================================================================================
@@ -66,6 +66,6 @@ process FASTQ_SCREEN {
 		"""
 		module load fastq_screen
 
-		fastq_screen --conf /cluster/work/nme/software/config/fastq_screen.conf $fastq_screen_args $reads
+		fastq_screen --conf $params.fastq_screen_conf $fastq_screen_args $reads
 		"""
 }

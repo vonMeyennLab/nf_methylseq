@@ -9,7 +9,6 @@ params.input = null
 input_files  = file(params.input)
 
 
-
 /* ========================================================================================
     OUTPUT DIRECTORY
 ======================================================================================== */
@@ -22,7 +21,6 @@ if(params.outdir){
 }
 
 
-
 /* ========================================================================================
     SKIP STEPS
 ======================================================================================== */
@@ -32,11 +30,10 @@ params.skip_deduplication        = false
 params.add_filter_non_conversion = false
 
 
-
 /* ========================================================================================
     SEQUENCING TYPE PARAMETERS
 ======================================================================================== */
-params.seqtype     = ''
+params.seqtype     = 'WGBS'
 params.scNMT       = false
 params.pbat        = false
 params.rrbs        = false
@@ -88,16 +85,15 @@ else if (params.seqtype == 'scNMT-seq'){
 }
 
 
-
 /* ========================================================================================
     HELPER PARAMETERS
 ======================================================================================== */
-params.genome       = ''
-params.verbose      = false
-params.single_end   = false  // default mode is auto-detect. NOTE: params are handed over automatically
-params.help         = false
-params.list_genomes = false
-
+params.fastq_screen_conf = "/cluster/work/nme/software/config/fastq_screen.conf" // FastQ Screen config file directory
+params.genome            = ''
+params.verbose           = false
+params.single_end        = false  // default mode is auto-detect. NOTE: params are handed over automatically
+params.help              = false
+params.list_genomes      = false
 
 
 /* ========================================================================================
@@ -114,7 +110,6 @@ params.coverage2cytosine_args             = ''
 params.bismark2summary_args               = ''
 params.bismark2report_args                = ''
 params.multiqc_args                       = ''
-
 
 
 /* ========================================================================================
@@ -139,7 +134,6 @@ if (params.verbose){
 }
 
 
-
 /* ========================================================================================
     GENOMES
 ======================================================================================== */
@@ -152,7 +146,6 @@ if (params.list_genomes){
 genome = getGenome(params.genome)
 
 
-
 /* ========================================================================================
     FILES CHANNEL
 ======================================================================================== */
@@ -160,13 +153,12 @@ include { makeFilesChannel; getFileBaseNames } from './modules/files.mod.nf'
 file_ch = makeFilesChannel(input_files)
 
 
-
 /* ========================================================================================
     WORKFLOW
 ======================================================================================== */
 include { FASTQC }                               from './modules/fastqc.mod.nf'                         
 include { FASTQC as FASTQC2 }                    from './modules/fastqc.mod.nf' 
-include { FASTQ_SCREEN }                         from './modules/fastq_screen.mod.nf'                  params(bisulfite: '--bisulfite')
+include { FASTQ_SCREEN }                         from './modules/fastq_screen.mod.nf'                  params(fastq_screen_conf: params.fastq_screen_conf, bisulfite: '--bisulfite')
 include { TRIM_GALORE }                          from './modules/trim_galore.mod.nf'                   params(pbat: pbat_trim, singlecell: singlecell, rrbs: rrbs)
 include { BISMARK }                              from './modules/bismark.mod.nf'                       params(genome: genome, pbat: pbat, singlecell: singlecell)
 include { BISMARK_FILTER_NON_CONVERSION }        from './modules/bismark_filter_non_conversion.mod.nf'
