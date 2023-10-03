@@ -5,7 +5,7 @@ nextflow.enable.dsl=2
 /* ========================================================================================
     PARAMETERS
 ======================================================================================== */
-params.custom_genome = ''
+params.custom_genome_file = ''
 
 
 /* ========================================================================================
@@ -16,9 +16,9 @@ def getGenome(name) {
     // Find a file with the same name as the genome in our genomes.d directory
     scriptDir = workflow.projectDir
 
-    if(params.custom_genome){
+    if(params.custom_genome_file){
         
-        def fileName = params.custom_genome
+        def fileName = params.custom_genome_file
     
     } else {
 
