@@ -47,9 +47,37 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
     PhiX</br>
     Mitochondria
 
-### Optional parameters
+- Option to use a custom genome for alignment by providing an absolute path to a custom genome file. </br>
+`--custom_genome_file`
+
+    > | Genome file example   |                                                                  |
+    > |----------------|------------------------------------------------------------------------------|
+    > | name           | GRCm39                                                                       |
+    > | species        | Mouse                                                                        |
+    > | fasta          | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/WholeGenomeFasta/            |
+    > | bismark        | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BismarkIndex/                |
+    > | bowtie         | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BowtieIndex/genome           |
+    > | bowtie2        | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Bowtie2Index/genome          |
+    > | star           | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/STARIndex/genome             |
+    > | bwa            | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/BWAIndex/genome              |
+    > | hisat2         | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/genome           |
+    > | hisat2_splices | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/splice_sites.txt |
+    > | gtf            | ${GENOMES}/Mus_musculus/Ensembl/GRCm39/Annotation/Genes/genes.gtf            |
+
+
+
+### FastQ Screen optional parameters
 - Option to provide a custom FastQ Screen config file.</br>
 `--fastq_screen_conf` _[default: /cluster/work/nme/software/config/fastq_screen.conf]_</br>
+
+
+### Bismark optional parameters
+
+- Option to write all reads that could not be aligned to a file in the output directory.</br>
+`--unmapped`</br>
+
+- Option to write all reads which produce more than one valid alignment with the same number of lowest mismatches or other reads that fail to align uniquely to a file in the output directory.</br>
+`--ambiguous`
 
 
 ### Skipping and adding options
