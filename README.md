@@ -72,6 +72,15 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 
 
 ### Bismark optional parameters
+- Option to set the minimum insert size for valid paired-end alignments.</br>
+`--minins` _[Defaul: 0]_</br>
+
+- Option to set the maximum insert size for valid paired-end alignments.</br>
+`--maxins` _[Defaul: 500]_</br>
+
+- Option to set the alignment mode to local.</br>
+`--local`</br>
+    > In this mode, it is not required that the entire read aligns from one end to the other. Rather, some characters may be omitted (“soft-clipped”) from the ends in order to achieve the greatest possible alignment score.
 
 - Option to write all reads that could not be aligned to a file in the output directory.</br>
 `--unmapped`</br>
