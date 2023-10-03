@@ -7,25 +7,6 @@
 
     "definitions": {
 
-        "sequencing_type_options": {
-            "title": "Sequencing type options",
-            "type": "object",
-            "fa_icon": "fas fa-users-cog",
-            "description": "Choose the bisulfite sequencing type.",
-            "properties": {
-
-                "seqtype": {
-                    "type": "string",
-                    "default": "WGBS",
-                    "description": "Name of the bisulfite sequencing type.",
-                    "fa_icon": "fas fa-book",
-                    "help_text": "The default values for each sequencing type.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOME-seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
-                    "enum": ["WGBS", "PBAT", "RRBS", "NOME-seq", "scBS-seq", "scNMT-seq"]
-                }
-
-            }
-        },
-
         "input_output_options": {
             "title": "Input/output options",
             "type":  "object",
@@ -47,6 +28,25 @@
                     "format": "directory-path",
                     "description": "The output directory where the results will be saved. You have to use an absolute path.",
                     "fa_icon": "fas fa-folder-open"
+                }
+
+            }
+        },
+
+        "sequencing_type_options": {
+            "title": "Sequencing type options",
+            "type": "object",
+            "fa_icon": "fas fa-users-cog",
+            "description": "Choose the bisulfite sequencing type.",
+            "properties": {
+
+                "seqtype": {
+                    "type": "string",
+                    "default": "WGBS",
+                    "description": "Name of the bisulfite sequencing type.",
+                    "fa_icon": "fas fa-book",
+                    "help_text": "The default values for each sequencing type.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOME-seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
+                    "enum": ["WGBS", "PBAT", "RRBS", "NOME-seq", "scBS-seq", "scNMT-seq"]
                 }
 
             }
