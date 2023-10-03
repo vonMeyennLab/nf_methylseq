@@ -66,6 +66,12 @@
                     "description": "Name of the reference genome.",
                     "fa_icon": "fas fa-book",
                     "enum": ["GRCm39", "GRCm38", "GRCh38", "GRCh37", "panTro6", "CHIMP2.1.4", "BDGP6", "susScr11", "Rnor_6.0", "R64-1-1", "TAIR10", "WBcel235", "E_coli_K_12_DH10B", "E_coli_K_12_MG1655", "Vectors", "Lambda", "PhiX", "Mitochondria"]
+                },
+
+                "custom_genome": {
+                    "type": "string",
+                    "description": "Absolute path to a custom genome file. For example: /cluster/work/nme/data/josousa/project/genome/CHM13.genome. This will override the genome selected above.",
+                    "fa_icon": "fas fa-book"
                 }
 
             }

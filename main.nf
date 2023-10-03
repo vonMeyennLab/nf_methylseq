@@ -148,7 +148,9 @@ if (params.verbose){
 /* ========================================================================================
     GENOMES
 ======================================================================================== */
-include { getGenome; listGenomes } from './modules/genomes.mod.nf'
+params.custom_genome = '' // Option to add a directory for a custom genome
+
+include { getGenome; listGenomes } from './modules/genomes.mod.nf' params(custom_genome: params.custom_genome)
 
 if (params.list_genomes){
     listGenomes()
