@@ -70,7 +70,7 @@
 
                 "custom_genome_file": {
                     "type": "string",
-                    "description": "Absolute path to a custom genome file. For example: /cluster/work/nme/data/josousa/project/genome/CHM13.genome. This option will override the genome selected above!",
+                    "description": "Absolute path to a custom genome file. For example: /cluster/work/nme/data/josousa/project/genome/CHM13.genome. This option will override the genome selected above.",
                     "fa_icon": "fas fa-book"
                 }
 
