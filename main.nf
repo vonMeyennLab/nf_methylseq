@@ -56,11 +56,6 @@ if (params.seqtype == 'PBAT'){
     pbat_trim = '9'
 }
 
-// PBAT (without Trim Galore --clip_R1 9 --clip_R2 9)
-else if (params.seqtype == 'PBAT without default TrimGalore clip'){
-    pbat = true
-}
-
 // RRBS
 else if (params.seqtype == 'RRBS'){
     rrbs = true

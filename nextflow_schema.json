@@ -19,8 +19,8 @@
                     "default": "WGBS",
                     "description": "Name of the bisulfite sequencing type.",
                     "fa_icon": "fas fa-book",
-                    "help_text": "The default values for each sequencing type.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nPBAT without default TrimGalore clip: \n\nfastq_screen_args='--bisulfite' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOME-seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
-                    "enum": ["WGBS", "PBAT", "PBAT without default TrimGalore clip", "RRBS", "NOME-seq", "scBS-seq", "scNMT-seq"]
+                    "help_text": "The default values for each sequencing type.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOME-seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
+                    "enum": ["WGBS", "PBAT", "RRBS", "NOME-seq", "scBS-seq", "scNMT-seq"]
                 }
 
             }
@@ -66,6 +66,23 @@
                     "description": "Name of the reference genome.",
                     "fa_icon": "fas fa-book",
                     "enum": ["GRCm39", "GRCm38", "GRCh38", "GRCh37", "panTro6", "CHIMP2.1.4", "BDGP6", "susScr11", "Rnor_6.0", "R64-1-1", "TAIR10", "WBcel235", "E_coli_K_12_DH10B", "E_coli_K_12_MG1655", "Vectors", "Lambda", "PhiX", "Mitochondria"]
+                }
+
+            }
+        },
+
+        "fastq_screen_options": {
+            "title": "FastQ Screen options",
+            "type": "object",
+            "fa_icon": "fas fa-users-cog",
+            "description": "Choose the FastQ Screen options.",
+            "properties": {
+
+                "fastq_screen_conf": {
+                    "type": "string",
+                    "default": "/cluster/work/nme/software/config/fastq_screen.conf",
+                    "description": "FastQ Screen config file directory.",
+                    "fa_icon": "fas fa-book"
                 }
 
             }
@@ -191,6 +208,9 @@
         },
         {
             "$ref": "#/definitions/reference_genome_options"
+        },
+        {
+            "$ref": "#/definitions/fastq_screen_options"
         },
         {
             "$ref": "#/definitions/process_skipping_options"

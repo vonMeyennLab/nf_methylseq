@@ -11,7 +11,7 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 3. [Trim Galore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)
 4. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 5. [Bismark](https://felixkrueger.github.io/Bismark/)
-6. [Bismark filter non-conversion](https://felixkrueger.github.io/Bismark/bismark/filter_nonconverted_reads/)
+6. [Bismark filter non-conversion](https://felixkrueger.github.io/Bismark/bismark/filter_nonconverted_reads/) _[Optional]_
 7. [Bismark deduplication](https://felixkrueger.github.io/Bismark/bismark/deduplication/)
 8. [Bismark methylation extractor](https://felixkrueger.github.io/Bismark/bismark/methylation_extraction/)
 9. [Bismark2report](https://felixkrueger.github.io/Bismark/bismark/processing_report/)
