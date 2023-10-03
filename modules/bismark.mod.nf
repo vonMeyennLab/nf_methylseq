@@ -11,7 +11,10 @@ params.pbat 	     = false
 params.unmapped      = false
 params.ambiguous     = false
 params.singlecell    = false
+params.local         = false
 params.read_identity = ''
+params.minins        = 0
+params.maxins        = 500
 
 
 /* ========================================================================================
@@ -48,6 +51,19 @@ process BISMARK {
 		========== */
 		if (verbose){
 			println ("[MODULE] BISMARK ARGS: " + bismark_args)
+		}
+
+		/* ==========
+			Insert size
+		========== */
+		bismark_args += " --minins ${params.minins} --maxins ${params.maxins} "
+
+
+		/* ==========
+			Local alignment
+		========== */
+		if (params.local){
+			bismark_args += " --local "
 		}
 
 

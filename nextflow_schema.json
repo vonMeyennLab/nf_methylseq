@@ -84,6 +84,27 @@
             "description": "Choose the Bismark options.",
             "properties": {
 
+                "minins": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-book",
+                    "description": "The minimum insert size for valid paired-end alignments.",
+                    "default": 0
+                },
+
+                "maxins": {
+                    "type": "integer",
+                    "fa_icon": "fas fa-book",
+                    "description": "The maximum insert size for valid paired-end alignments.",
+                    "default": 500
+                },
+
+                "local": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-book",
+                    "description": "In this mode, it is not required that the entire read aligns from one end to the other. Rather, some characters may be omitted (“soft-clipped”) from the ends in order to achieve the greatest possible alignment score.",
+                    "default": false
+                },
+
                 "unmapped": {
                     "type": "boolean",
                     "fa_icon": "fas fa-book",

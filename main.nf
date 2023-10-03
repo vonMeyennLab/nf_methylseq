@@ -96,6 +96,14 @@ params.ambiguous = false
 // Write all reads which produce more than one valid alignment with the same number of
 // lowest mismatches or other reads that fail to align uniquely to a file in the output directory.
 
+params.minins = 0 // The minimum insert size for valid paired-end alignments.
+params.maxins = 500 // The maximum insert size for valid paired-end alignments.
+
+params.local = false
+// In this mode, it is not required that the entire read aligns from one end to the other. Rather, some
+// characters may be omitted (“soft-clipped”) from the ends in order to achieve the greatest possible
+// alignment score.
+
 
 /* ========================================================================================
     HELPER PARAMETERS
@@ -173,7 +181,7 @@ include { FASTQC }                               from './modules/fastqc.mod.nf'
 include { FASTQC as FASTQC2 }                    from './modules/fastqc.mod.nf' 
 include { FASTQ_SCREEN }                         from './modules/fastq_screen.mod.nf'                  params(fastq_screen_conf: params.fastq_screen_conf, bisulfite: true)
 include { TRIM_GALORE }                          from './modules/trim_galore.mod.nf'                   params(pbat: pbat_trim, singlecell: singlecell, rrbs: rrbs)
-include { BISMARK }                              from './modules/bismark.mod.nf'                       params(genome: genome, pbat: pbat, singlecell: singlecell, unmapped: params.unmapped, ambiguous: params.ambiguous)
+include { BISMARK }                              from './modules/bismark.mod.nf'                       params(genome: genome, pbat: pbat, singlecell: singlecell, unmapped: params.unmapped, ambiguous: params.ambiguous, minins: params.minins, maxins: params.maxins, local: params.local)
 include { BISMARK_FILTER_NON_CONVERSION }        from './modules/bismark_filter_non_conversion.mod.nf'
 include { BISMARK_DEDUPLICATION }                from './modules/bismark_deduplication.mod.nf'
 include { BISMARK_METHYLATION_EXTRACTOR }        from './modules/bismark_methylation_extractor.mod.nf' params(pbat: pbat, singlecell: singlecell, rrbs: rrbs, nonCG: nonCG)
