@@ -1,18 +1,3 @@
----
-output: github_document
----
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  cache = FALSE,
-  comment = "#>",
-  out.width = "100%"
-)
-```
-
 # Bisulfite Sequencing Pipeline
 
 <img width="40%" src="https://raw.githubusercontent.com/nextflow-io/trademark/master/nextflow2014_no-bg.png" /></br>
@@ -20,7 +5,7 @@ knitr::opts_chunk$set(
 A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing data.
 
 
-### Pipeline steps
+## Pipeline steps
 1. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) 
 2. [FastQ Screen](https://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
 3. [Trim Galore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)
@@ -34,12 +19,12 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 11. [Bismark2summary](https://felixkrueger.github.io/Bismark/bismark/summary_report/)
 12. [MultiQC](https://multiqc.info/)
 
-### Required parameters
+## Required parameters
 `--input` _Path to the folder where the FASTQ files are located. For example: /cluster/work/nme/data/josousa/project/fastq/*fastq.gz_</br>
 
 `--outdir` _output directory where the files will be saved._
 
-### Genomes
+## Genomes
 - Reference genome used for alignment.</br>
 `--genome` _[Default: GRCm39]_
     > Available genomes:</br>
@@ -81,12 +66,12 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 
 
 
-### FastQ Screen optional parameters
+## FastQ Screen optional parameters
 - Option to provide a custom FastQ Screen config file.</br>
 `--fastq_screen_conf` _[default: /cluster/work/nme/software/config/fastq_screen.conf]_</br>
 
 
-### Bismark optional parameters
+## Bismark optional parameters
 - Option to set the minimum insert size for valid paired-end alignments.</br>
 `--minins` _[Defaul: 0]_</br>
 
@@ -104,7 +89,7 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 `--ambiguous`
 
 
-### Skipping and adding options
+## Skipping and adding options
 - Option to skip FastQC, TrimGalore, and FastQ Screen. The first step of the pipeline will be the Bismark alignment. </br>
 `--skip_qc`
 
@@ -118,7 +103,7 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 `--add_filter_non_conversion`
 
 
-### Extra arguments
+## Extra arguments
 - Option to add extra arguments to the package [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) .</br>
 `--fastqc_args`</br>
 
