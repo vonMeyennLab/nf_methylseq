@@ -1,3 +1,18 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  cache = FALSE,
+  comment = "#>",
+  out.width = "100%"
+)
+```
+
 # Bisulfite Sequencing Pipeline
 
 <img width="40%" src="https://raw.githubusercontent.com/nextflow-io/trademark/master/nextflow2014_no-bg.png" /></br>
@@ -26,7 +41,7 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 
 ### Genomes
 - Reference genome used for alignment.</br>
-`--genome` _[Default: GRCm39]_</br>
+`--genome` _[Default: GRCm39]_
     > Available genomes:</br>
     GRCm39</br>
     GRCm38</br>
