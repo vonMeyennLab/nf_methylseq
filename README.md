@@ -6,6 +6,7 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 
 
 ## Pipeline steps
+```
 1. [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) 
 2. [FastQ Screen](https://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/)
 3. [Trim Galore](https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/)
@@ -18,6 +19,7 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 10. [Bismark2report](https://felixkrueger.github.io/Bismark/bismark/processing_report/)
 11. [Bismark2summary](https://felixkrueger.github.io/Bismark/bismark/summary_report/)
 12. [MultiQC](https://multiqc.info/)
+```
 
 ## Required parameters
 `--input` _Path to the folder where the FASTQ files are located. For example: /cluster/work/nme/data/josousa/project/fastq/*fastq.gz_</br>
