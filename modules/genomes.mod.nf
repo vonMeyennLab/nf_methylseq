@@ -16,15 +16,7 @@ def getGenome(name) {
     // Find a file with the same name as the genome in our genomes.d directory
     scriptDir = workflow.projectDir
 
-    if(params.custom_genome_file){
-        
-        def fileName = params.custom_genome_file
-    
-    } else {
-
-        def fileName = scriptDir.toString() + "/genomes.d/" + name + ".genome"
-
-    }
+    def fileName = scriptDir.toString() + "/genomes.d/" + name + ".genome"
 
     // die gracefully if the user specified an incorrect genome
     def testFile = new File(fileName)
