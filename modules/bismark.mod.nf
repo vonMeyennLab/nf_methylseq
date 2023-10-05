@@ -164,6 +164,6 @@ process BISMARK {
 		"""
 		module load bismark
 
-		bismark --parallel 1 -p ${task.cpus} --temp_dir $NXF_WORK --basename $bismark_name $index $bismark_args $readString
+		bismark --parallel 1 -p ${task.cpus} --basename $bismark_name $index $bismark_args $readString
 		"""
 }
