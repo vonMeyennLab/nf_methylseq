@@ -21,8 +21,6 @@ params.maxins        = 500
     PROCESSES
 ======================================================================================== */
 process BISMARK {
-	
-	scratch '/cluster/work/nme/tmp/.nextflow_cache/josousa'
 
 	label 'bismark'
 	tag "$name" // Adds name to job submission
