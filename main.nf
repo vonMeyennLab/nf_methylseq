@@ -206,11 +206,11 @@ file_ch = makeFilesChannel(input_files)
 include { FASTQC }                               from './modules/fastqc.mod.nf'                         
 include { FASTQC as FASTQC2 }                    from './modules/fastqc.mod.nf' 
 include { FASTQ_SCREEN }                         from './modules/fastq_screen.mod.nf'                  params(fastq_screen_conf: params.fastq_screen_conf)
-include { TRIM_GALORE }                          from './modules/trim_galore.mod.nf'                   params(clip_r2 = clip_r2)
+include { TRIM_GALORE }                          from './modules/trim_galore.mod.nf'                   params(clip_r2: clip_r2)
 include { BISMARK }                              from './modules/bismark.mod.nf'                       params(genome: genome)
 include { BISMARK_FILTER_NON_CONVERSION }        from './modules/bismark_filter_non_conversion.mod.nf'
 include { BISMARK_DEDUPLICATION }                from './modules/bismark_deduplication.mod.nf'
-include { BISMARK_METHYLATION_EXTRACTOR }        from './modules/bismark_methylation_extractor.mod.nf' params(ignore_r2 = ignore_r2)
+include { BISMARK_METHYLATION_EXTRACTOR }        from './modules/bismark_methylation_extractor.mod.nf' params(ignore_r2: ignore_r2)
 include { COVERAGE2CYTOSINE }                    from './modules/coverage2cytosine.mod.nf'             params(genome: genome)
 include { BISMARK2REPORT }                       from './modules/bismark2report.mod.nf'
 include { BISMARK2SUMMARY }                      from './modules/bismark2summary.mod.nf'
