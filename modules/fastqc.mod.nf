@@ -7,6 +7,7 @@ nextflow.enable.dsl=2
 ======================================================================================== */
 process FASTQC {
 
+	label 'fastqc'
 	tag "$name" // Adds name to job submission
 
 	input:
