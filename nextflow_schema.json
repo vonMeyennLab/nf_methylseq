@@ -52,8 +52,8 @@
                     "default": "WGBS",
                     "description": "Name of the bisulfite sequencing method.",
                     "fa_icon": "fas fa-book",
-                    "help_text": "The default values for each sequencing method.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOME-Seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-Seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-Seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
-                    "enum": ["WGBS", "PBAT", "RRBS", "NOME-Seq", "scBS-Seq", "scNMT-Seq"]
+                    "help_text": "The default values for each sequencing method.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOMe-Seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-Seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-Seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
+                    "enum": ["WGBS", "PBAT", "RRBS", "NOMe-Seq", "scBS-Seq", "scNMT-Seq"]
                 }
 
             }
