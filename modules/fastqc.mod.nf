@@ -3,12 +3,6 @@ nextflow.enable.dsl=2
 
 
 /* ========================================================================================
-    DEFAULT PARAMETERS
-======================================================================================== */
-params.verbose = true
-
-
-/* ========================================================================================
     PROCESSES
 ======================================================================================== */
 process FASTQC {
@@ -19,7 +13,6 @@ process FASTQC {
 	  	tuple val(name), path(reads)
 		val(outputdir)
 		val(fastqc_args)
-		val(verbose)
 
 	output:
 	  	tuple val(name), path ("*fastqc*"), emit: all
@@ -28,17 +21,9 @@ process FASTQC {
 		publishDir "$outputdir/qc/fastqc", mode: "link", overwrite: true
 
 	script:
-
-		/* ==========
-			Verbose
-		========== */
-		if (verbose){
-			println ("[MODULE] FASTQC ARGS: " + fastqc_args)
-		}
-
 		"""
 		module load fastqc
 
-		fastqc $fastqc_args -q -t 2 ${reads}
+		fastqc ${fastqc_args} --threads ${task.cpus} ${reads}
 		"""
 }

@@ -5,7 +5,6 @@ nextflow.enable.dsl=2
 /* ========================================================================================
 	DEFAULT PARAMETERS
 ======================================================================================== */
-params.verbose    = true
 params.bam_output = true // Setting if the bam file should be published
 
 
@@ -21,8 +20,7 @@ process BISMARK_DEDUPLICATION {
 	    tuple val(name), path(bam)
 		val (outputdir)
 		val (deduplicate_bismark_args)
-		val (verbose)
-
+		
 	output:
 		path "*report.txt",             emit: report
 		tuple val(name), path ("*bam"), emit: bam
@@ -31,22 +29,9 @@ process BISMARK_DEDUPLICATION {
 		publishDir "$outputdir/aligned/bam/deduplicated",  mode: "link", overwrite: true, pattern: "*bam", enabled: params.bam_output
 
     script:
-	
-		/* ==========
-			Verbose
-		========== */
-		if (verbose){
-			println ("[MODULE] BISMARK DEDUPLICATION ARGS: " + deduplicate_bismark_args)
-		}
-
-		/* ==========
-			Arguments
-		========== */
-		deduplicate_bismark_args += " --bam "
-
 		"""
 		module load bismark
 
-		deduplicate_bismark ${deduplicate_bismark_args} ${bam}
+		deduplicate_bismark --bam ${deduplicate_bismark_args} ${bam}
 		"""
 }

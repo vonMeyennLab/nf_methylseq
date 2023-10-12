@@ -6,6 +6,7 @@ nextflow.enable.dsl=2
     FUNCTIONS
 ======================================================================================== */
 
+// makeFilesChannel
 def makeFilesChannel(fileList) {    
     
     file_ch = Channel.fromFilePairs( getFileBaseNames(fileList), size:-1)
@@ -13,6 +14,7 @@ def makeFilesChannel(fileList) {
 
 }
 
+// getFileBaseNames
 def getFileBaseNames(fileList) {
 
     baseNames = [:]

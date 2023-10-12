@@ -3,12 +3,6 @@ nextflow.enable.dsl=2
 
 
 /* ========================================================================================
-    DEFAULT PARAMETERS
-======================================================================================== */
-params.verbose = true
-
-
-/* ========================================================================================
     PROCESSES
 ======================================================================================== */
 process BISMARK_FILTER_NON_CONVERSION {
@@ -20,7 +14,6 @@ process BISMARK_FILTER_NON_CONVERSION {
 	    tuple val(name), path(bam)
 		val (outputdir)
 		val (filter_non_conversion_args)
-		val (verbose)
 
 	output:
 		path "*.txt",                                      emit: report
@@ -32,14 +25,6 @@ process BISMARK_FILTER_NON_CONVERSION {
 		publishDir "$outputdir/aligned/bam",  mode: "link", overwrite: true, pattern: "*nonCG_removed_seqs.bam"
 
     script:
-
-		/* ==========
-			Verbose
-		========== */
-		if (verbose){
-			println ("[MODULE] BISMARK FILTER NON-CONVERSION ARGS: " + filter_non_conversion_args)
-		}
-		
 		"""
 		module load samtools bismark
 

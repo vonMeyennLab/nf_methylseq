@@ -5,18 +5,28 @@ nextflow.enable.dsl=2
 /* ========================================================================================
     PARAMETERS
 ======================================================================================== */
-params.custom_genome_file = false
+params.custom_genome_file = ''
 
 
 /* ========================================================================================
     FUNCTIONS
 ======================================================================================== */
+
+// getGenome
 def getGenome(name) {
 
-    // Find a file with the same name as the genome in our genomes.d directory
+    // Find a file with the same name as the genome in our genomes directory
     scriptDir = workflow.projectDir
 
-    def fileName = scriptDir.toString() + "/genomes.d/" + name + ".genome"
+    if (params.custom_genome_file){
+        
+        fileName = params.custom_genome_file
+
+    } else {
+
+        fileName = scriptDir.toString() + "/genomes/" + name + ".genome"
+
+    }
 
     // die gracefully if the user specified an incorrect genome
     def testFile = new File(fileName)
@@ -39,35 +49,4 @@ def getGenome(name) {
 
     return genomeValues
 
-}
-
-
-
-
-def listGenomes() {
-
-    println ("These genomes are currently available to choose from:")
-    println ("=====================================================")
-    scriptDir = workflow.projectDir + "/genomes.d/"
-
-    allFiles = scriptDir.list()
-
-    for( def file : allFiles.sort() ) {
-
-        if( file =~ /.genome$/){
-
-            genomeFH = new File(scriptDir.toString() + "/$file").newInputStream()
-            name = file.replaceFirst(/.genome/, "")
-
-            println (name)
-            genomeFH.eachLine {
-                if (params.verbose){
-                    println ("\t$it")
-                }
-            }
-        }
-    }
-    println ("\nTo see this list of available genomes with more detailed information about paths and indexes,\nplease re-run the command including '--list_genomes --verbose'\n\n")
-
-    System.exit(1)
 }

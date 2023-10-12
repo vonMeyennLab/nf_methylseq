@@ -23,30 +23,37 @@
                     "fa_icon": "fas fa-file-code"
                 },
 
+                "single_end": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-users-cog",
+                    "description": "Force the pipeline to assign input as single-end. By default, the pipeline detects whether the input files are single-end or paired-end.",
+                    "default": false
+                },
+
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
-                    "description": "The output directory where the results will be saved. You have to use an absolute path.",
+                    "description": "The output directory where the results will be saved. Use the absolute path.",
                     "fa_icon": "fas fa-folder-open"
                 }
 
             }
         },
 
-        "sequencing_type_options": {
-            "title": "Sequencing type options",
+        "sequencing_method_options": {
+            "title": "Sequencing method options",
             "type": "object",
             "fa_icon": "fas fa-users-cog",
-            "description": "Choose the bisulfite sequencing type.",
+            "description": "Choose the bisulfite sequencing method.",
             "properties": {
 
-                "seqtype": {
+                "seq_method": {
                     "type": "string",
                     "default": "WGBS",
-                    "description": "Name of the bisulfite sequencing type.",
+                    "description": "Name of the bisulfite sequencing method.",
                     "fa_icon": "fas fa-book",
-                    "help_text": "The default values for each sequencing type.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOME-seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
-                    "enum": ["WGBS", "PBAT", "RRBS", "NOME-seq", "scBS-seq", "scNMT-seq"]
+                    "help_text": "The default values for each sequencing method.\n\n WGBS: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\nPBAT: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 9 --clip_R2 9' \n\nbismark_args='--pbat' \n\nRRBS: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--rrbs' \n\nNOME-Seq: \n\nfastq_screen_args='--bisulfite' \n\nbismark_methylation_extractor_args='--ignore_r2 2' \n\ncoverage2cytosine_args='--nome' \n\nscBS-Seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nscNMT-Seq: \n\nfastq_screen_args='--bisulfite' \n\ntrim_galore_args='--clip_R1 6 --clip_R2 6' \n\nbismark_args='--non_directional' \n\nbismark_methylation_extractor_args='--CX'",
+                    "enum": ["WGBS", "PBAT", "RRBS", "NOME-Seq", "scBS-Seq", "scNMT-Seq"]
                 }
 
             }
@@ -252,7 +259,7 @@
     },
     "allOf": [
         {
-            "$ref": "#/definitions/sequencing_type_options"
+            "$ref": "#/definitions/sequencing_method_options"
         },
         {
             "$ref": "#/definitions/input_output_options"

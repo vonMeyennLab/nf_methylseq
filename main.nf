@@ -22,101 +22,15 @@ if(params.outdir){
 
 
 /* ========================================================================================
-    SKIP STEPS
-======================================================================================== */
-params.skip_qc                   = false
-params.skip_fastq_screen         = false
-params.skip_deduplication        = false
-params.add_filter_non_conversion = false
-
-
-/* ========================================================================================
-    SEQUENCING TYPE PARAMETERS
-======================================================================================== */
-params.seqtype     = 'WGBS'
-params.scNMT       = false
-params.pbat        = false
-params.rrbs        = false
-params.singlecell  = false
-params.nonCG       = false
-params.nome        = false
-params.pbat_trim   = false
-
-scNMT       = params.scNMT     
-pbat        = params.pbat      
-rrbs        = params.rrbs      
-singlecell  = params.singlecell
-nonCG       = params.nonCG     
-nome        = params.nome      
-pbat_trim   = params.pbat_trim 
-
-// PBAT (with Trim Galore --clip_R1 9 --clip_R2 9)
-if (params.seqtype == 'PBAT'){
-    pbat = true
-    pbat_trim = '9'
-}
-
-// RRBS
-else if (params.seqtype == 'RRBS'){
-    rrbs = true
-}
-
-// NOME-seq
-else if (params.seqtype == 'NOME-seq'){
-    nome = true
-}
-
-// scBS-seq
-else if (params.seqtype == 'scBS-seq'){
-    singlecell = '6'
-}
-
-// scNMT-seq
-else if (params.seqtype == 'scNMT-seq'){
-    singlecell = '6'
-    nome       = true
-    nonCG      = true
-    scNMT      = true
-}
-
-
-/* ========================================================================================
-    FASTQ SCREEN PARAMETERS
-======================================================================================== */
-params.fastq_screen_conf = "/cluster/work/nme/software/config/fastq_screen.conf" // FastQ Screen config file directory
-
-
-/* ========================================================================================
-    BISMARK PARAMETERS
-======================================================================================== */
-params.unmapped  = false
-// Write all reads that could not be aligned to a file in the output directory.
-
-params.ambiguous = false 
-// Write all reads which produce more than one valid alignment with the same number of
-// lowest mismatches or other reads that fail to align uniquely to a file in the output directory.
-
-params.minins = 0 // The minimum insert size for valid paired-end alignments.
-params.maxins = 500 // The maximum insert size for valid paired-end alignments.
-
-params.local = false
-// In this mode, it is not required that the entire read aligns from one end to the other. Rather, some
-// characters may be omitted (“soft-clipped”) from the ends in order to achieve the greatest possible
-// alignment score.
-
-
-/* ========================================================================================
-    HELPER PARAMETERS
+    DEFAULT PARAMETERS
 ======================================================================================== */
 params.genome            = 'GRCm39'
-params.verbose           = false
-params.single_end        = false  // default mode is auto-detect. NOTE: params are handed over automatically
-params.help              = false
-params.list_genomes      = false
+params.single_end        = false  // default mode is auto-detect.
+params.seq_method        = 'WGBS'
 
 
 /* ========================================================================================
-    WORKFLOW STEPS PARAMETERS
+    PACKAGE PARAMETERS
 ======================================================================================== */
 params.fastqc_args                        = ''
 params.fastq_screen_args                  = ''
@@ -130,40 +44,152 @@ params.bismark2summary_args               = ''
 params.bismark2report_args                = ''
 params.multiqc_args                       = ''
 
+fastqc_args                        = params.fastqc_args
+fastq_screen_args                  = params.fastq_screen_args
+trim_galore_args                   = params.trim_galore_args
+bismark_args                       = params.bismark_args
+filter_non_conversion_args         = params.filter_non_conversion_args
+deduplicate_bismark_args           = params.deduplicate_bismark_args
+bismark_methylation_extractor_args = params.bismark_methylation_extractor_args
+coverage2cytosine_args             = params.coverage2cytosine_args
+bismark2summary_args               = params.bismark2summary_args
+bismark2report_args                = params.bismark2report_args
+multiqc_args                       = params.multiqc_args
+
 
 /* ========================================================================================
-    MESSAGES
+    SKIP STEPS
 ======================================================================================== */
-if (params.list_genomes){
-    println ("[WORKLFOW] List genomes selected")
+params.skip_qc                   = false
+params.skip_fastq_screen         = false
+params.skip_deduplication        = false
+params.add_filter_non_conversion = false
+
+
+/* ========================================================================================
+    SEQUENCING METHOD PARAMETERS
+======================================================================================== */
+
+// Trim Galore parameters
+params.clip_r1 = false
+clip_r1        = params.clip_r1
+
+params.clip_r2 = false
+clip_r2        = params.clip_r2
+
+// Bismark methylation extractor parameters
+params.ignore_r2 = false
+ignore_r2        = params.ignore_r2
+
+
+// WGBS
+if (params.seq_method == 'WGBS'){
+
+    fastq_screen_args += " --bisulfite "
+    ignore_r2          = 2 // Bismark methylation extractor 
+
 }
 
-if (params.verbose){
-    println ("[WORKFLOW] FASTQC ARGS: "                            + params.fastqc_args)
-    println ("[WORKFLOW] FASTQ SCREEN ARGS ARE: "                  + params.fastq_screen_args)
-    println ("[WORKFLOW] TRIM GALORE ARGS: "                       + params.trim_galore_args)
-    println ("[WORKFLOW] BISMARK ARGS ARE: "                       + params.bismark_args)
-    println ("[WORKFLOW] BISMARK FILTER NON-CONVERSION ARGS ARE: " + params.filter_non_conversion_args)
-    println ("[WORKFLOW] BISMARK DEDUPLICATION ARGS ARE: "         + params.deduplicate_bismark_args)
-    println ("[WORKFLOW] BISMARK METHYLATION EXTRACTOR ARGS ARE: " + params.bismark_methylation_extractor_args)
-    println ("[WORKFLOW] BISMARK COVERAGE2CYTOSINE ARGS ARE: "     + params.coverage2cytosine_args)
-    println ("[WORKFLOW] BISMARK2SUMMARY ARGS ARE: "               + params.bismark2summary_args)
-    println ("[WORKFLOW] BISMARK2REPORT ARGS ARE: "                + params.bismark2report_args)
-    println ("[WORKFLOW] MULTIQC ARGS: "                           + params.multiqc_args)
+// PBAT
+if (params.seq_method == 'PBAT'){
+
+    fastq_screen_args += " --bisulfite "
+    bismark_args      += " --pbat "
+    clip_r1            = 9       // Trim Galore
+    clip_r2            = clip_r1 // Trim Galore
+    trim_galore_args  += " --clip_R1 ${clip_r1} "
+
 }
 
+// RRBS
+if (params.seq_method == 'RRBS'){
+
+    fastq_screen_args += " --bisulfite "
+    trim_galore_args  += " --rrbs "
+
+}
+
+// NOMe-Seq
+if (params.seq_method == 'NOMe-Seq'){
+
+    fastq_screen_args      += " --bisulfite "
+    coverage2cytosine_args += " --nome "
+    ignore_r2               = 2 // Bismark methylation extractor
+
+}
+
+// scBS-Seq
+if (params.seq_method == 'scBS-Seq'){
+
+    fastq_screen_args += " --bisulfite "
+    bismark_args      += " --non_directional "
+    clip_r1            = 6       // Trim Galore
+    clip_r2            = clip_r1 // Trim Galore
+    trim_galore_args  += " --clip_R1 ${clip_r1} "
+
+}
+
+// scNMT-Seq
+if (params.seq_method == 'scNMT-Seq'){
+
+    fastq_screen_args                  += " --bisulfite "
+    bismark_args                       += " --non_directional "
+    bismark_methylation_extractor_args += " --CX "
+    clip_r1                             = 6       // Trim Galore
+    clip_r2                             = clip_r1 // Trim Galore
+    trim_galore_args                   += " --clip_R1 ${clip_r1} "
+
+}
+
+
+/* ========================================================================================
+    FASTQ SCREEN PARAMETERS
+======================================================================================== */
+params.fastq_screen_conf = "/cluster/work/nme/software/config/fastq_screen.conf" // FastQ Screen config file directory
+
+
+/* ========================================================================================
+    BISMARK PARAMETERS
+======================================================================================== */
+
+// --unmapped
+// Write all reads that could not be aligned to a file in the output directory.
+params.unmapped  = false
+if (params.unmapped){
+		bismark_args += " --unmapped "
+	}
+
+// --ambiguous
+// Write all reads which produce more than one valid alignment with the same number of
+// lowest mismatches or other reads that fail to align uniquely to a file in the output directory.
+params.ambiguous = false 
+if (params.ambiguous){
+	    bismark_args += " --ambiguous "
+    }
+
+// --local
+// In this mode, it is not required that the entire read aligns from one end to the other. Rather, some
+// characters may be omitted (“soft-clipped”) from the ends in order to achieve the greatest possible
+// alignment score.
+params.local = false 
+if (params.local){
+	    bismark_args += " --local "
+    }
+
+// The minimum insert size for valid paired-end alignments.
+params.minins = 0
+// The maximum insert size for valid paired-end alignments.
+params.maxins = 500
+
+bismark_args += " --minins ${params.minins} --maxins ${params.maxins} "
+        
 
 /* ========================================================================================
     GENOMES
 ======================================================================================== */
-params.custom_genome_file = false // Option to add a directory for a custom genome
+params.custom_genome_file = '' // Option to add a directory for a custom genome file
 
-include { getGenome; listGenomes } from './modules/genomes.mod.nf' params(custom_genome_file: params.custom_genome_file)
-
-if (params.list_genomes){
-    listGenomes()
-}
-
+include { getGenome } from './modules/genomes.mod.nf' params(custom_genome_file: params.custom_genome_file)
 genome = getGenome(params.genome)
 
 
@@ -179,13 +205,13 @@ file_ch = makeFilesChannel(input_files)
 ======================================================================================== */
 include { FASTQC }                               from './modules/fastqc.mod.nf'                         
 include { FASTQC as FASTQC2 }                    from './modules/fastqc.mod.nf' 
-include { FASTQ_SCREEN }                         from './modules/fastq_screen.mod.nf'                  params(fastq_screen_conf: params.fastq_screen_conf, bisulfite: true)
-include { TRIM_GALORE }                          from './modules/trim_galore.mod.nf'                   params(pbat: pbat_trim, singlecell: singlecell, rrbs: rrbs)
-include { BISMARK }                              from './modules/bismark.mod.nf'                       params(genome: genome, pbat: pbat, singlecell: singlecell, unmapped: params.unmapped, ambiguous: params.ambiguous, minins: params.minins, maxins: params.maxins, local: params.local)
+include { FASTQ_SCREEN }                         from './modules/fastq_screen.mod.nf'                  params(fastq_screen_conf: params.fastq_screen_conf)
+include { TRIM_GALORE }                          from './modules/trim_galore.mod.nf'                   params(clip_r2 = clip_r2)
+include { BISMARK }                              from './modules/bismark.mod.nf'                       params(genome: genome)
 include { BISMARK_FILTER_NON_CONVERSION }        from './modules/bismark_filter_non_conversion.mod.nf'
 include { BISMARK_DEDUPLICATION }                from './modules/bismark_deduplication.mod.nf'
-include { BISMARK_METHYLATION_EXTRACTOR }        from './modules/bismark_methylation_extractor.mod.nf' params(pbat: pbat, singlecell: singlecell, rrbs: rrbs, nonCG: nonCG)
-include { COVERAGE2CYTOSINE }                    from './modules/coverage2cytosine.mod.nf'             params(genome: genome, nome: nome)
+include { BISMARK_METHYLATION_EXTRACTOR }        from './modules/bismark_methylation_extractor.mod.nf' params(ignore_r2 = ignore_r2)
+include { COVERAGE2CYTOSINE }                    from './modules/coverage2cytosine.mod.nf'             params(genome: genome)
 include { BISMARK2REPORT }                       from './modules/bismark2report.mod.nf'
 include { BISMARK2SUMMARY }                      from './modules/bismark2summary.mod.nf'
 include { MULTIQC }                              from './modules/multiqc.mod.nf' 
@@ -195,16 +221,18 @@ workflow {
     main:
         // QC conditional
         if (!params.skip_qc){ 
-            FASTQC                          (file_ch, outdir, params.fastqc_args, params.verbose)
-            TRIM_GALORE                     (file_ch, outdir, params.trim_galore_args, params.verbose)
+            FASTQC                          (file_ch, outdir, fastqc_args)
+            
             // FastQ Screen conditional
             if (!params.skip_fastq_screen){ 
-            FASTQ_SCREEN                    (TRIM_GALORE.out.reads, outdir, params.fastq_screen_args, params.verbose)
+            FASTQ_SCREEN                    (file_ch, outdir, fastq_screen_args)
             }
-            FASTQC2                         (TRIM_GALORE.out.reads, outdir, params.fastqc_args, params.verbose)
-            BISMARK                         (TRIM_GALORE.out.reads, outdir, params.bismark_args, params.verbose)
+
+            TRIM_GALORE                     (file_ch, outdir, trim_galore_args)
+            FASTQC2                         (TRIM_GALORE.out.reads, outdir, fastqc_args)
+            BISMARK                         (TRIM_GALORE.out.reads, outdir, bismark_args)
         } else {
-            BISMARK                         (file_ch, outdir, params.bismark_args, params.verbose)
+            BISMARK                         (file_ch, outdir, bismark_args)
         }
 
         // Deduplication conditional
@@ -212,26 +240,29 @@ workflow {
         
                 // Filter non-conversion conditional
                 if (params.add_filter_non_conversion){ 
-                    BISMARK_FILTER_NON_CONVERSION   (BISMARK.out.bam, outdir, params.filter_non_conversion_args, params.verbose)
-                    BISMARK_DEDUPLICATION           (BISMARK_FILTER_NON_CONVERSION.out.bam, outdir, params.deduplicate_bismark_args, params.verbose)
-                    BISMARK_METHYLATION_EXTRACTOR   (BISMARK_DEDUPLICATION.out.bam, outdir, params.bismark_methylation_extractor_args, params.verbose)
+                    BISMARK_FILTER_NON_CONVERSION   (BISMARK.out.bam, outdir, filter_non_conversion_args)
+                    BISMARK_DEDUPLICATION           (BISMARK_FILTER_NON_CONVERSION.out.bam, outdir, deduplicate_bismark_args)
+                    BISMARK_METHYLATION_EXTRACTOR   (BISMARK_DEDUPLICATION.out.bam, outdir, bismark_methylation_extractor_args)
                 } else {
-                    BISMARK_DEDUPLICATION           (BISMARK.out.bam, outdir, params.deduplicate_bismark_args, params.verbose)
-                    BISMARK_METHYLATION_EXTRACTOR   (BISMARK_DEDUPLICATION.out.bam, outdir, params.bismark_methylation_extractor_args, params.verbose)
+                    BISMARK_DEDUPLICATION           (BISMARK.out.bam, outdir, deduplicate_bismark_args)
+                    BISMARK_METHYLATION_EXTRACTOR   (BISMARK_DEDUPLICATION.out.bam, outdir, bismark_methylation_extractor_args)
                 }
+
         } else {
+
                 // Filter non-conversion conditional
                 if (params.add_filter_non_conversion){ 
-                    BISMARK_FILTER_NON_CONVERSION   (BISMARK.out.bam, outdir, params.filter_non_conversion_args, params.verbose)
-                    BISMARK_METHYLATION_EXTRACTOR   (BISMARK_FILTER_NON_CONVERSION.out.bam, outdir, params.bismark_methylation_extractor_args, params.verbose)
+                    BISMARK_FILTER_NON_CONVERSION   (BISMARK.out.bam, outdir, filter_non_conversion_args)
+                    BISMARK_METHYLATION_EXTRACTOR   (BISMARK_FILTER_NON_CONVERSION.out.bam, outdir, bismark_methylation_extractor_args)
                 } else {
-                    BISMARK_METHYLATION_EXTRACTOR   (BISMARK.out.bam, outdir, params.bismark_methylation_extractor_args, params.verbose)
+                    BISMARK_METHYLATION_EXTRACTOR   (BISMARK.out.bam, outdir, bismark_methylation_extractor_args)
                 }
+                
         }
 
-        // scNME conditional
-        if (scNMT){ 
-            COVERAGE2CYTOSINE             (BISMARK_METHYLATION_EXTRACTOR.out.coverage, outdir, params.coverage2cytosine_args, params.verbose)
+        // scNMT-Seq conditional
+        if (params.seq_method == 'scNMT-Seq'){ 
+            COVERAGE2CYTOSINE             (BISMARK_METHYLATION_EXTRACTOR.out.coverage, outdir, coverage2cytosine_args)
         }
 
 
@@ -243,7 +274,7 @@ workflow {
         if (!params.skip_qc){
 
             multiqc_ch = FASTQC.out.report.mix(
-                         TRIM_GALORE.out.report,
+                         TRIM_GALORE.out.report.ifEmpty([]),
                          FASTQC2.out.report.ifEmpty([])
                          ).collect()
 
@@ -253,13 +284,18 @@ workflow {
                             ).collect()
             }
 
+            multiqc_ch = multiqc_ch.mix(
+                            BISMARK.out.report.ifEmpty([])
+                            ).collect()
+
         } else {
 
-            multiqc_ch = BISMARK.out.report.ifEmpty([])
+            multiqc_ch = BISMARK.out.report.ifEmpty([]).collect()
 
         }
 
         if (!params.skip_deduplication){
+
             if (params.add_filter_non_conversion){ 
                 
                 // with deduplication & with filter non-conversion
@@ -271,7 +307,7 @@ workflow {
                             ).collect() 
 
                 bismark_report_ch = BISMARK.out.bam.mix(
-                            BISMARK.out.report,
+                            BISMARK.out.report.ifEmpty([]),
                             BISMARK_FILTER_NON_CONVERSION.out.report.ifEmpty([]),
                             BISMARK_DEDUPLICATION.out.report.ifEmpty([]),
                             BISMARK_METHYLATION_EXTRACTOR.out.report.ifEmpty([]),
@@ -288,11 +324,12 @@ workflow {
                             ).collect()
 
                 bismark_report_ch = BISMARK.out.bam.mix(
-                            BISMARK.out.report,
+                            BISMARK.out.report.ifEmpty([]),
                             BISMARK_DEDUPLICATION.out.report.ifEmpty([]),
                             BISMARK_METHYLATION_EXTRACTOR.out.report.ifEmpty([]),
                             BISMARK_METHYLATION_EXTRACTOR.out.mbias.ifEmpty([])
-                            ).collect()      
+                            ).collect()   
+
             }   
 
         } else { 
@@ -331,7 +368,7 @@ workflow {
         }
 
         // with coverage2cytosine
-        if (scNMT){
+        if (params.seq_method == 'scNMT-Seq'){
 
             multiqc_ch = multiqc_ch.mix(
                          COVERAGE2CYTOSINE.out.report.ifEmpty([])
@@ -346,24 +383,7 @@ workflow {
         /* ========================================================================================
         ======================================================================================== */
 
-        BISMARK2REPORT      (bismark_report_ch, outdir, params.bismark2report_args, params.verbose)
-        BISMARK2SUMMARY     (bismark_report_ch, outdir, params.bismark2summary_args, params.verbose)
-        MULTIQC             (multiqc_ch, outdir, params.multiqc_args, params.verbose)
-}
-
-workflow.onComplete {
-
-    def msg = """\
-        Pipeline execution summary
-        ---------------------------
-        Jobname     : ${workflow.runName}
-        Completed at: ${workflow.complete}
-        Duration    : ${workflow.duration}
-        Success     : ${workflow.success}
-        workDir     : ${workflow.workDir}
-        exit status : ${workflow.exitStatus}
-        """
-    .stripIndent()
-
-    sendMail(to: "${workflow.userName}@ethz.ch", subject: 'Minimal pipeline execution report', body: msg)
+        BISMARK2REPORT      (bismark_report_ch, outdir, bismark2report_args)
+        BISMARK2SUMMARY     (bismark_report_ch, outdir, bismark2summary_args)
+        MULTIQC             (multiqc_ch, outdir, multiqc_args)
 }
