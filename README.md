@@ -22,12 +22,12 @@ A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing dat
 12. [MultiQC](https://multiqc.info/)
 
 ## Required parameters
-`--input` _Path to the folder where the FASTQ files are located. 
+Path to the folder where the FASTQ files are located. 
 ```bash
 --input /cluster/work/nme/data/josousa/project/fastq/*fastq.gz
 ```
 
-`--outdir` _output directory where the files will be saved._
+Output directory where the files will be saved.
 ```bash
 --outdir /cluster/work/nme/data/josousa/project
 ```
