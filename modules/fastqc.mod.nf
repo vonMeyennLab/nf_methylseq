@@ -10,6 +10,8 @@ process FASTQC {
 	label 'fastqc'
 	tag "$name" // Adds name to job submission
 
+	container 'docker://staphb/fastqc:0.12.1'
+
 	input:
 	  	tuple val(name), path(reads)
 		val(outputdir)
@@ -23,9 +25,12 @@ process FASTQC {
 
 	script:
 		"""
-		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
-
-		module load fastqc
+		ls
+		echo $SINGULARITY_BIND
+		echo $GENOMES
+		echo $WORK
+		ls $GENOMES
+		ls /cluster
 
 		fastqc ${fastqc_args} --threads ${task.cpus} ${reads}
 		"""

@@ -16,6 +16,8 @@ process BISMARK {
 	label 'bismark'
 	tag "$name" // Adds name to job submission
 
+	container 'docker://josousa/bismark:0.24.2'
+
     input:
 	    tuple val(name), path(reads)
 		val (outputdir)
@@ -60,10 +62,6 @@ process BISMARK {
 		}
 
 		"""
-		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
-
-		module load bismark
-
 		bismark --parallel 1 -p ${task.cpus} --basename ${bismark_name} ${index} ${bismark_args} ${readString}
 		"""
 }

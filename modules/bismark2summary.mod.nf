@@ -7,6 +7,8 @@ nextflow.enable.dsl=2
 ======================================================================================== */
 process BISMARK2SUMMARY {
 
+	container 'docker://josousa/bismark:0.24.2'
+
 	input:
 		file(file)
 		val(outputdir)
@@ -27,10 +29,6 @@ process BISMARK2SUMMARY {
 		bismark2summary_args = bismark2summary_args.replaceAll(/'/,"")
 		
 		"""
-		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
-
-		module load bismark
-
 		bismark2summary
 		"""
 

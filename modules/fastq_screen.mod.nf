@@ -15,6 +15,8 @@ process FASTQ_SCREEN {
 
 	label 'fastqScreen'
 	tag "$name" // Adds name to job submission
+
+	container 'docker://josousa/fastq_screen:0.15.3'
 	
 	input:
 		tuple val(name), path(reads)
@@ -36,10 +38,6 @@ process FASTQ_SCREEN {
 		}
 
 		"""
-		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
-
-		module load fastq_screen
-
 		fastq_screen --conf ${params.fastq_screen_conf} ${fastq_screen_args} ${reads}
 		"""
 }
