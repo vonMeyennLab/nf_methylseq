@@ -41,6 +41,8 @@ process TRIM_GALORE {
 		}
 
 		"""
+		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
 		module load trimgalore
 
 		trim_galore --cores ${task.cpus} ${trim_galore_args} ${reads}

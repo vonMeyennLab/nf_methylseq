@@ -27,6 +27,8 @@ process BISMARK2SUMMARY {
 		bismark2summary_args = bismark2summary_args.replaceAll(/'/,"")
 		
 		"""
+		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
 		module load bismark
 
 		bismark2summary

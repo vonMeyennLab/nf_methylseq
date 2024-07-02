@@ -26,6 +26,8 @@ process BISMARK_FILTER_NON_CONVERSION {
 
     script:
 		"""
+		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
 		module load bismark
 
 		filter_non_conversion ${filter_non_conversion_args} ${bam}

@@ -39,6 +39,8 @@ process COVERAGE2CYTOSINE {
 		outfile_basename = (outfile_basename - ~/.cov$/)
 
 		"""
+		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
 		module load bismark
 
 		coverage2cytosine --gzip --genome ${genome} ${coverage2cytosine_args} --output ${outfile_basename} ${coverage_file}

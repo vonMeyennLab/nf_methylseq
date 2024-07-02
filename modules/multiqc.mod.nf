@@ -21,6 +21,8 @@ process MULTIQC {
 
 	script:
 		"""
+		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
 		module load multiqc
 
 		multiqc ${multiqc_args} --filename multiqc_report.html .

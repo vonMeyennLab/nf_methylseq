@@ -28,6 +28,8 @@ process BISMARK_DEDUPLICATION {
 
     script:
         """
+        export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
         module load bismark
 
         deduplicate_bismark --bam ${deduplicate_bismark_args} ${bam}

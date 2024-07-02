@@ -23,6 +23,8 @@ process FASTQC {
 
 	script:
 		"""
+		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
 		module load fastqc
 
 		fastqc ${fastqc_args} --threads ${task.cpus} ${reads}

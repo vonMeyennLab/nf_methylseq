@@ -44,6 +44,8 @@ process BISMARK_METHYLATION_EXTRACTOR {
 		}
 		
 		"""
+		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
 		module load bismark
 
 		bismark_methylation_extractor --gzip --bedGraph --buffer 10G --parallel ${task.cpus} ${bismark_methylation_extractor_args} ${bam}

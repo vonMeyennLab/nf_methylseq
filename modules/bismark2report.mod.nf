@@ -19,6 +19,8 @@ process BISMARK2REPORT {
 
 	script:
 		"""
+		export MODULEPATH=/cluster/work/nme/software/modules:$MODULEPATH
+
 		module load bismark
 
 		bismark2report
