@@ -9,8 +9,6 @@ process MULTIQC {
 
 	label 'multiQC'
 
-	container 'docker://josousa/multiqc:1.22.3'
-
 	input:
 		path(file)
 		val(outputdir)
@@ -23,6 +21,8 @@ process MULTIQC {
 
 	script:
 		"""
+		module load multiqc
+
 		multiqc ${multiqc_args} --filename multiqc_report.html .
 		"""
 }

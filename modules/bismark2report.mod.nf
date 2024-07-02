@@ -7,8 +7,6 @@ nextflow.enable.dsl=2
 ======================================================================================== */
 process BISMARK2REPORT {
 
-	container 'docker://josousa/bismark:0.24.2'
-
 	input:
 		file(file)
 		val(outputdir)
@@ -21,6 +19,8 @@ process BISMARK2REPORT {
 
 	script:
 		"""
+		module load bismark
+
 		bismark2report
 		"""
 }

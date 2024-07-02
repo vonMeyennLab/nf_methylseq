@@ -16,8 +16,6 @@ process BISMARK_METHYLATION_EXTRACTOR {
 	label 'BismarkMethylationExtractor'
 	tag "$bam" // Adds name to job submission
 
-	container 'docker://josousa/bismark:0.24.2'
-
     input:
 	    tuple val(name), path(bam)
 		val (outputdir)
@@ -46,6 +44,8 @@ process BISMARK_METHYLATION_EXTRACTOR {
 		}
 		
 		"""
+		module load bismark
+
 		bismark_methylation_extractor --gzip --bedGraph --buffer 10G --parallel ${task.cpus} ${bismark_methylation_extractor_args} ${bam}
 		"""
 

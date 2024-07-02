@@ -14,8 +14,6 @@ process BISMARK_DEDUPLICATION {
     label 'bismarkDeduplication'
     tag "$bam" // Adds name to job submission
     
-    container 'docker://josousa/bismark:0.24.2'
-    
     input:
         tuple val(name), path(bam)
         val(outputdir)
@@ -30,6 +28,8 @@ process BISMARK_DEDUPLICATION {
 
     script:
         """
+        module load bismark
+
         deduplicate_bismark --bam ${deduplicate_bismark_args} ${bam}
         """
 }

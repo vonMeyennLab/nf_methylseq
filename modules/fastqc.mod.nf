@@ -9,8 +9,6 @@ process FASTQC {
 
 	label 'fastqc'
 	tag "$name" // Adds name to job submission
-	
-	container 'docker://staphb/fastqc:0.12.1'
 
 	input:
 	  	tuple val(name), path(reads)
@@ -25,6 +23,8 @@ process FASTQC {
 
 	script:
 		"""
+		module load fastqc
+
 		fastqc ${fastqc_args} --threads ${task.cpus} ${reads}
 		"""
 }
