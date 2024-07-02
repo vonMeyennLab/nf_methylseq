@@ -5,7 +5,7 @@ nextflow.enable.dsl=2
 /* ========================================================================================
     DEFAULT PARAMETERS
 ======================================================================================== */
-params.fastq_screen_conf = "/cluster/work/nme/software/config/fastq_screen.conf"
+params.fastq_screen_conf = "./config/fastq_screen.conf"
 
 
 /* ========================================================================================
@@ -17,6 +17,7 @@ process FASTQ_SCREEN {
 	tag "$name" // Adds name to job submission
 
 	container 'docker://josousa/fastq_screen:0.15.3'
+	containerOptions '--bind /cluster/work/nme/genomes:/cluster/work/nme/genomes'
 	
 	input:
 		tuple val(name), path(reads)

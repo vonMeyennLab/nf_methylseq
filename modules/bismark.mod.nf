@@ -17,6 +17,7 @@ process BISMARK {
 	tag "$name" // Adds name to job submission
 	
 	container 'docker://josousa/bismark:0.24.2'
+	containerOptions '--bind /cluster/work/nme/genomes:/cluster/work/nme/genomes'
 
     input:
 	    tuple val(name), path(reads)

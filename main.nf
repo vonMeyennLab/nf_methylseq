@@ -145,7 +145,7 @@ if (params.seq_method == 'scNMT-Seq'){
 /* ========================================================================================
     FASTQ SCREEN PARAMETERS
 ======================================================================================== */
-params.fastq_screen_conf = "/cluster/work/nme/software/config/fastq_screen.conf" // FastQ Screen config file directory
+params.fastq_screen_conf = "./config/fastq_screen.conf" // FastQ Screen config file directory
 
 
 /* ========================================================================================
