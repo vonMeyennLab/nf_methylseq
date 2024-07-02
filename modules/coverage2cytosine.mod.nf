@@ -11,7 +11,6 @@ process COVERAGE2CYTOSINE {
 	tag "$coverage_file" // Adds name to job submission
 
 	container 'docker://josousa/bismark:0.24.2'
-	containerOptions '--bind /cluster/work/nme/genomes:/cluster/work/nme/genomes'
 	
 	input:
 		path(coverage_file)
