@@ -5,7 +5,7 @@ nextflow.enable.dsl=2
 /* ========================================================================================
     DEFAULT PARAMETERS
 ======================================================================================== */
-params.fastq_screen_conf = "./config/fastq_screen.conf"
+params.fastq_screen_conf = "/cluster/work/nme/software/config/fastq_screen.conf"
 
 
 /* ========================================================================================
