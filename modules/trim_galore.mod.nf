@@ -41,7 +41,7 @@ process TRIM_GALORE {
 		}
 
 		"""
-		module load trim_galore
+		module load trimgalore
 
 		trim_galore --cores ${task.cpus} ${trim_galore_args} ${reads}
 		"""
