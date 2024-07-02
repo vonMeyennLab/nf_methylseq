@@ -16,6 +16,8 @@ process TRIM_GALORE {
 	label 'trimGalore'
 	tag "$name" // Adds name to job submission
 
+	container 'docker://josousa/trimgalore:trimgalore-0.6.10-cutadapt-4.9'
+
 	input:
 		tuple val(name), path(reads)
 		val(outputdir)
@@ -41,8 +43,6 @@ process TRIM_GALORE {
 		}
 
 		"""
-		module load trimgalore
-
 		trim_galore --cores ${task.cpus} ${trim_galore_args} ${reads}
 		"""
 }

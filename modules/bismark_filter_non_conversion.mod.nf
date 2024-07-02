@@ -10,6 +10,8 @@ process BISMARK_FILTER_NON_CONVERSION {
 	label 'bismarkFilterNonConversion'
 	tag "$bam" // Adds name to job submission
   	
+	container 'docker://josousa/bismark:0.24.2'
+
     input:
 	    tuple val(name), path(bam)
 		val (outputdir)
@@ -26,8 +28,6 @@ process BISMARK_FILTER_NON_CONVERSION {
 
     script:
 		"""
-		module load samtools bismark
-
 		filter_non_conversion ${filter_non_conversion_args} ${bam}
 		"""
 }
