@@ -25,13 +25,6 @@ process FASTQC {
 
 	script:
 		"""
-		ls
-		echo $SINGULARITY_BIND
-		echo $GENOMES
-		echo $WORK
-		ls $GENOMES
-		ls /cluster
-
 		fastqc ${fastqc_args} --threads ${task.cpus} ${reads}
 		"""
 }
