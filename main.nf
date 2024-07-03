@@ -6,7 +6,12 @@ nextflow.enable.dsl=2
     INPUT FILES
 ======================================================================================== */
 params.input = null
-input_files  = file(params.input)
+
+if (!params.input) {
+    error "Input file not specified. Use --input to specify the input file."
+}
+
+input_files = file(params.input)
 
 
 /* ========================================================================================
