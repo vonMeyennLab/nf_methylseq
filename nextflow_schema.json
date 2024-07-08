@@ -91,19 +91,6 @@
             "description": "Choose the Bismark options.",
             "properties": {
 
-                "minins": {
-                    "type": "integer",
-                    "fa_icon": "fas fa-book",
-                    "description": "The minimum insert size for valid paired-end alignments.",
-                },
-
-                "maxins": {
-                    "type": "integer",
-                    "fa_icon": "fas fa-book",
-                    "description": "The maximum insert size for valid paired-end alignments.",
-                    "default": 500
-                },
-
                 "local": {
                     "type": "boolean",
                     "fa_icon": "fas fa-book",

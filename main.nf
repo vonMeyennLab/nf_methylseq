@@ -180,13 +180,6 @@ params.local = false
 if (params.local){
 	    bismark_args += " --local "
     }
-
-// The minimum insert size for valid paired-end alignments.
-params.minins = 0
-// The maximum insert size for valid paired-end alignments.
-params.maxins = 500
-
-bismark_args += " --minins ${params.minins} --maxins ${params.maxins} "
         
 
 /* ========================================================================================

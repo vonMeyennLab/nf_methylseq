@@ -87,12 +87,6 @@ Output directory where the files will be saved.
 
 
 ## Bismark optional parameters
-- Option to set the minimum insert size for valid paired-end alignments.
-`--minins` _[Defaul: 0]_
-
-- Option to set the maximum insert size for valid paired-end alignments.
-`--maxins` _[Defaul: 500]_
-
 - Option to set the alignment mode to _local_.
 `--local`
     > In this mode, it is not required that the entire read aligns from one end to the other. Rather, some characters may be omitted (“soft-clipped”) from the ends in order to achieve the greatest possible alignment score.
