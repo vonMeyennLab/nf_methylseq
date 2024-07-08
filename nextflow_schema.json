@@ -95,7 +95,6 @@
                     "type": "integer",
                     "fa_icon": "fas fa-book",
                     "description": "The minimum insert size for valid paired-end alignments.",
-                    "default": 0
                 },
 
                 "maxins": {
