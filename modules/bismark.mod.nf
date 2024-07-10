@@ -24,12 +24,13 @@ process BISMARK {
 		val (bismark_args)
 
 	output:
-	    tuple val(name), path("*bam"), emit: bam
-		path "*report.txt",  	       emit: report
+		tuple val(name), path("*bam"), emit: bam
+		tuple val(name), path("*fq.gz"), emit: unaligned, optional: true
+		path "*report.txt", emit: report
 
 		publishDir "$outputdir/aligned/bam", 	 mode: "link", overwrite: true, pattern: "*bam", enabled: params.bam_output
 		publishDir "$outputdir/aligned/logs",    mode: "link", overwrite: true, pattern: "*report.txt"
-		publishDir "$outputdir/unaligned/fastq", mode: "link", overwrite: true, pattern: "*.fq.gz"
+		publishDir "$outputdir/unaligned/fastq", mode: "link", overwrite: true, pattern: "*fq.gz"
 
     script:
 		/* ==========
@@ -62,6 +63,6 @@ process BISMARK {
 		}
 
 		"""
-		bismark --parallel 1 -p ${task.cpus} --basename ${bismark_name} ${index} ${bismark_args} ${readString}
+		bismark --parallel 4 -p 4 --basename ${bismark_name} ${index} ${bismark_args} ${readString}
 		"""
 }
