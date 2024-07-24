@@ -34,7 +34,8 @@ Output directory where the files will be saved.
 
 ## Genomes
 - Reference genome used for alignment.
-`--genome`
+
+    `--genome`
 
     Available genomes:
     ``` bash
@@ -65,18 +66,10 @@ Output directory where the files will be saved.
     ```
 
     Example of a genome file:
-    ``` bash    
-    name           GRCm39                                                                      
-    species        Mouse                                                                       
-    fasta          /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/WholeGenomeFasta/           
-    bismark        /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/BismarkIndex/               
-    bowtie         /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/BowtieIndex/genome          
-    bowtie2        /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Bowtie2Index/genome         
-    star           /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/STARIndex/            
-    bwa            /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/BWAIndex/genome             
-    hisat2         /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/genome          
-    hisat2_splices /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/Hisat2Index/splice_sites.txt
-    gtf            /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Annotation/Genes/genes.gtf           
+    ``` bash
+    name           GRCm39
+    species        Mouse
+    bismark        /cluster/work/nme/genomes/Mus_musculus/Ensembl/GRCm39/Sequence/BismarkIndex/          
     ```
 
 ## FastQ Screen optional parameters
@@ -88,14 +81,17 @@ Output directory where the files will be saved.
 
 ## Bismark optional parameters
 - Option to set the alignment mode to _local_.
-`--local`
+
+    `--local`
     > In this mode, it is not required that the entire read aligns from one end to the other. Rather, some characters may be omitted (“soft-clipped”) from the ends in order to achieve the greatest possible alignment score.
 
 - Option to write all reads that could not be aligned to a file in the output directory.
-`--unmapped`
+    
+    `--unmapped`
 
 - Option to write all reads which produce more than one valid alignment with the same number of lowest mismatches or other reads that fail to align uniquely to a file in the output directory.
-`--ambiguous`
+
+    `--ambiguous`
 
 
 ## Skipping and adding options
