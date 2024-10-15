@@ -1,0 +1,4 @@
+name	        ARS-UCD1.3
+species	        Bos_taurus
+fasta           /cluster/work/nme/genomes/refgenie/alias/Bos_taurus_ARS-UCD1_3/fasta/ensembl_release_112/
+bismark         /cluster/work/nme/genomes/refgenie/alias/Bos_taurus_ARS-UCD1_3/bismark_bt2_index/ensembl_release_112/

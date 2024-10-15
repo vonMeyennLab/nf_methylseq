@@ -1,0 +1,4 @@
+name	        GRCm38.p6
+species	        Mus_musculus
+fasta           /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm38_p6/fasta/ensembl_release_102/
+bismark         /cluster/work/nme/genomes/refgenie/alias/Mus_musculus_GRCm38_p6/bismark_bt2_index/ensembl_release_102/

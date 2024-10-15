@@ -29,7 +29,7 @@ if(params.outdir){
 /* ========================================================================================
     DEFAULT PARAMETERS
 ======================================================================================== */
-params.genome            = 'GRCm39'
+params.genome            = 'Mus_musculus_GRCm39'
 params.single_end        = false  // default mode is auto-detect.
 params.seq_method        = 'WGBS'
 

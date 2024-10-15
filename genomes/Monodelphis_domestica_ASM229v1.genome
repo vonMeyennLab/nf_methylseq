@@ -1,0 +1,4 @@
+name	        ASM229v1
+species	        Monodelphis_domestica
+fasta           /cluster/work/nme/genomes/refgenie/alias/Monodelphis_domestica_ASM229v1/fasta/ensembl_release_112/
+bismark         /cluster/work/nme/genomes/refgenie/alias/Monodelphis_domestica_ASM229v1/bismark_bt2_index/ensembl_release_112/

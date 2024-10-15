@@ -1,0 +1,4 @@
+name	        mCalJac1.pat.X
+species	        Callithrix_jacchus
+fasta           /cluster/work/nme/genomes/refgenie/alias/Callithrix_jacchus_mCalJac1_pat_X/fasta/ensembl_release_112/
+bismark         /cluster/work/nme/genomes/refgenie/alias/Callithrix_jacchus_mCalJac1_pat_X/bismark_bt2_index/ensembl_release_112/
