@@ -19,12 +19,12 @@ process BISMARK_METHYLATION_EXTRACTOR {
 	container 'docker://josousa/bismark:0.24.2'
 
     input:
-	    tuple val(name), path(bam)
+		tuple val(name), path(bam)
 		val (outputdir)
 		val (bismark_methylation_extractor_args)
 
 	output:
-	    tuple val(name), path("CpG*.txt.gz"),   emit: context_files_CG
+		tuple val(name), path("CpG*.txt.gz"),   emit: context_files_CG
 		path "CH*.txt.gz",                      emit: context_files_nonCG
 		path "*report.txt",                     emit: report
 		path "*M-bias.txt",                     emit: mbias

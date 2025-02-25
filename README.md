@@ -1,7 +1,6 @@
 # Bisulfite Sequencing Pipeline
 
 <img width="30%" src="https://raw.githubusercontent.com/nextflow-io/trademark/master/nextflow-logo-bg-light.png" />
-<img width="30%" src="https://tower.nf/assets/nf-tower-black.svg" />
 
 A Nextflow pipeline to align and quantify Methylation (Bisulfite) sequencing data.
 

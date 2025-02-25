@@ -13,7 +13,7 @@ process BISMARK_FILTER_NON_CONVERSION {
 	container 'docker://josousa/bismark:0.24.2'
 
     input:
-	    tuple val(name), path(bam)
+		tuple val(name), path(bam)
 		val (outputdir)
 		val (filter_non_conversion_args)
 

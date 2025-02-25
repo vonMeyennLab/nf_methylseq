@@ -19,7 +19,7 @@ process BISMARK {
 	container 'docker://josousa/bismark:0.24.2'
 
     input:
-	    tuple val(name), path(reads)
+		tuple val(name), path(reads)
 		val (outputdir)
 		val (bismark_args)
 

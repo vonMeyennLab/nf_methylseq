@@ -169,7 +169,7 @@ if (params.unmapped){
 // lowest mismatches or other reads that fail to align uniquely to a file in the output directory.
 params.ambiguous = false 
 if (params.ambiguous){
-	    bismark_args += " --ambiguous "
+        bismark_args += " --ambiguous "
     }
 
 // --local
@@ -178,7 +178,7 @@ if (params.ambiguous){
 // alignment score.
 params.local = false 
 if (params.local){
-	    bismark_args += " --local "
+        bismark_args += " --local "
     }
         
 
@@ -272,9 +272,9 @@ workflow {
         if (!params.skip_qc){
 
             multiqc_ch = FASTQC.out.report.mix(
-                         TRIM_GALORE.out.report.ifEmpty([]),
-                         FASTQC2.out.report.ifEmpty([])
-                         ).collect()
+                            TRIM_GALORE.out.report.ifEmpty([]),
+                            FASTQC2.out.report.ifEmpty([])
+                            ).collect()
 
             if (!params.skip_fastq_screen){
                 multiqc_ch = multiqc_ch.mix(
@@ -335,10 +335,10 @@ workflow {
 
                 // without deduplication & with filter non-conversion
                 multiqc_ch = multiqc_ch.mix(
-                         BISMARK_FILTER_NON_CONVERSION.out.report.ifEmpty([]),
-                         BISMARK_METHYLATION_EXTRACTOR.out.report.ifEmpty([]),
-                         BISMARK_METHYLATION_EXTRACTOR.out.mbias.ifEmpty([])
-                         ).collect()
+                        BISMARK_FILTER_NON_CONVERSION.out.report.ifEmpty([]),
+                        BISMARK_METHYLATION_EXTRACTOR.out.report.ifEmpty([]),
+                        BISMARK_METHYLATION_EXTRACTOR.out.mbias.ifEmpty([])
+                        ).collect()
 
                 bismark_report_ch = BISMARK.out.bam.mix(
                         BISMARK.out.report,
@@ -369,12 +369,12 @@ workflow {
         if (params.seq_method == 'scNMT-Seq'){
 
             multiqc_ch = multiqc_ch.mix(
-                         COVERAGE2CYTOSINE.out.report.ifEmpty([])
-                         ).collect()
+                        COVERAGE2CYTOSINE.out.report.ifEmpty([])
+                        ).collect()
 
             bismark_report_ch = bismark_report_ch.mix(
-                         COVERAGE2CYTOSINE.out.report.ifEmpty([])
-                         ).collect()             
+                        COVERAGE2CYTOSINE.out.report.ifEmpty([])
+                        ).collect()             
 
         }
 
