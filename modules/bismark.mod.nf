@@ -63,6 +63,6 @@ process BISMARK {
 		}
 
 		"""
-		bismark --parallel 1 -p ${task.cpus} --basename ${bismark_name} ${index} ${bismark_args} ${readString}
+		bismark --parallel 4 -p ${task.cpus} --basename ${bismark_name} ${index} ${bismark_args} ${readString}
 		"""
 }
