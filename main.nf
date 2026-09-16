@@ -89,11 +89,10 @@ ignore_r2        = params.ignore_r2
 
 // WGBS
 if (params.seq_method == 'WGBS'){
-
     fastq_screen_args += " --bisulfite "
-    ignore_r2          = 2 // Bismark methylation extractor 
-
+    ignore_r2          = (params.ignore_r2 != false) ? params.ignore_r2 : 2
 }
+
 
 // PBAT
 if (params.seq_method == 'PBAT'){
@@ -116,11 +115,9 @@ if (params.seq_method == 'RRBS'){
 
 // NOMe-Seq
 if (params.seq_method == 'NOMe-Seq'){
-
     fastq_screen_args      += " --bisulfite "
     coverage2cytosine_args += " --nome "
-    ignore_r2               = 2 // Bismark methylation extractor
-
+    ignore_r2               = (params.ignore_r2 != false) ? params.ignore_r2 : 2
 }
 
 // scBS-Seq
