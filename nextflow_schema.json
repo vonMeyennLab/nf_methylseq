@@ -47,6 +47,13 @@
             "description": "Choose the bisulfite sequencing method.",
             "properties": {
 
+                "ignore_r2": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Ignore the first N bp from the 5' end of Read 2 during methylation extraction. Defaults to 2 for WGBS and NOMe-Seq. Set to 0 to disable.",
+                    "fa_icon": "fas fa-cut"
+                }
+
                 "seq_method": {
                     "type": "string",
                     "default": "WGBS",
